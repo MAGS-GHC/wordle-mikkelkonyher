@@ -1,14 +1,14 @@
 A: WORD CHECK FUNCTION
     Console.log to test process
-    1: Static test string, test array against array with loop
-    2: Add signal for grey/green/yellow letters in loop
-    3: Lock valid input to 5 letters. Considerations vis-a-vis framework for future check against valid word
+    x1: Static test string, test array against array with loop
+    x2: Add signal for grey/green/yellow letters in loop
+    *3: Lock valid input to 5 letters. Considerations vis-a-vis framework for future check against valid word
 
 B: INPUT/OUTPUT + STYLING
-    1: CSS style 5 column x 6 row grid
-    2: Input fields and ID for row 1. 
-    3: If 1 letter in each field, Activate function [A] on button-press
-    4: Apply colour according to signal in [A2].
+    x1: CSS style 5 column x 6 row grid
+    x2: Input fields and ID for row 1. 
+    x3: If 1 letter in each field, Activate function [A] on button-press
+    x4: Apply colour according to signal in [A2].
 
 C: INPUT + FUNCTION EXPANSION
     1: Add input fields for row 2-6 and modify loop for 6 tries total.
