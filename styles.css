@@ -7,3 +7,7 @@
   text-align: center;
   border-style: solid;
 }
+
+input {
+  width: 75px;
+}
