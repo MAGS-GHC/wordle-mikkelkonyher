@@ -9,7 +9,7 @@ getText("/Assets/valid-wordle-words.txt");
 async function getText(file) {
   let myObject = await fetch(file);
   let myText = await myObject.text();
-  myTest = myText.split('\n');
+  myTest = myText.split('\r\n');
   correct = myTest[Math.floor(Math.random() * 12973)];
 
 }
@@ -53,9 +53,15 @@ function checkValidWord () {
     }
     if (testWord === correct) {
         //game end
+<<<<<<< HEAD
        if(confirm("Completed! Press OK to play again?")){
             restart();
         }
+=======
+        round = 0;
+        correct = myTest[Math.floor(Math.random() * 12973)];
+        confirm("Yahaa")
+>>>>>>> 558d1c779c6dcfc30ddb3e72c71abf7e04bcbcbd
 
     }
 }
