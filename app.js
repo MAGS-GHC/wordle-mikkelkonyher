@@ -60,13 +60,4 @@ function checkValidWord () {
     }
 }
 
-function restart2(){
-    
-    let allInputs = document.querySelectorAll("input");
-    allInputs.forEach(clearInput => clearInput.value = "") 
-    allInputs.forEach(clearInput => clearInput.style.backgroundColor = "");
-    correct = "";
-    testWord = "";
-    round = 0;
-    correct = myTest[Math.floor(Math.random() * 12973)];
-}
+
