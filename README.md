@@ -43,3 +43,6 @@ STEP 5: lav et tastatur
 
 STEP 6: Få sat det op i CSS Grid og lav design 5x6 rækker
 
+
+
+

@@ -1,6 +1,18 @@
-let correct = "mango";
+let correct = "";
 let testWord = "";
 let round = 0;
+let myTest = [];
+
+
+getText("/Assets/valid-wordle-words.txt");
+
+async function getText(file) {
+  let myObject = await fetch(file);
+  let myText = await myObject.text();
+  myTest = myText.split('\n');
+  correct = myTest[Math.floor(Math.random() * 12973)];
+
+}
 
 function checkWord () {
     for (let i = 0; i<5; i++) {
@@ -22,16 +34,17 @@ function checkValidWord () {
     for (let i=0; i<5; i++) {
         testWord += document.getElementById("r" + round + "c" + i).value;
     }
-    if (testWord === correct) {
-        //game end
-        round = 0;
-    }
-    if (testWord.length === 5) { //later test valid dictionary word
+    if (testWord.length === 5 && /^[a-zA-Z]*$/.test(testWord)) { //later test valid dictionary word
         checkWord ();
         round++;
     }
     else {
         alert("Not valid?")
+    }
+    if (testWord === correct) {
+        //game end
+        round = 0;
+        correct = myTest[Math.floor(Math.random() * 12973)];
     }
 }
 
