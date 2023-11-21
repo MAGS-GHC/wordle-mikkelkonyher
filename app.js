@@ -27,16 +27,7 @@ function checkWord () {
         }
     }
 }
-function restart(){
-    
-    let allInputs = document.querySelectorAll("input");
-    allInputs.forEach(clearInput => clearInput.value = "") 
-    allInputs.forEach(clearInput => clearInput.style.backgroundColor = "");
-    correct = "";
-    testWord = "";
-    round = 0;
-    correct = myTest[Math.floor(Math.random() * 12973)];
-}
+
 
 function checkValidWord () {
     testWord = "";
@@ -53,17 +44,20 @@ function checkValidWord () {
     }
     if (testWord === correct) {
         //game end
-<<<<<<< HEAD
        if(confirm("Completed! Press OK to play again?")){
             restart();
         }
-=======
-        round = 0;
-        correct = myTest[Math.floor(Math.random() * 12973)];
-        confirm("Yahaa")
->>>>>>> 558d1c779c6dcfc30ddb3e72c71abf7e04bcbcbd
 
     }
 }
 
-
+function restart (){
+    
+    let allInputs = document.querySelectorAll("input");
+    allInputs.forEach(clearInput => clearInput.value = "") 
+    allInputs.forEach(clearInput => clearInput.style.backgroundColor = "");
+    correct = "";
+    testWord = "";
+    round = 0;
+    correct = myTest[Math.floor(Math.random() * 12973)];
+}
