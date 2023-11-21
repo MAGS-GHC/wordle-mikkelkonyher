@@ -43,9 +43,18 @@ function checkValidWord () {
     }
     if (testWord === correct) {
         //game end
+        checkWord ();
         round = 0;
         correct = myTest[Math.floor(Math.random() * 12973)];
+        alert("Yahaa")
+
     }
+}
+
+function clearFields () {
+    let allInputs = document.querySelectorAll("input");
+    allInputs.forEach(clearInput => clearInput.value = "") 
+    allInputs.forEach(clearInput => clearInput.style.backgroundColor = "white");
 }
 
 //Lige nu viser den både grøn og gul for a
