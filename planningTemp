@@ -16,13 +16,13 @@ C: INPUT + FUNCTION EXPANSION
     3: Lock wrong-round input fields
 
 D: WORDLE LIST
-    1: Replace static test string with random word from list.
+    x1: Replace static test string with random word from list.
     2: Consider structure for valid word check.
         a: Array range for starting letter?
         b: Search algorithms?
 
 E: REFINEMENT
-    1: Implement valid word check for function input
+    x1: Implement valid word check for function input
     2: Refine style of input boxes, background, etc.
 
 F: OPTIONAL FEATURES
