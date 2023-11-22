@@ -1,5 +1,35 @@
+.resetGame{
 
- 
+position: absolute;
+width: 248px;
+height: 57px;
+left: 740px;
+top: 950px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+
+color: #3D9AE2;
+
+}
+
+
+.restartButton{
+  position: absolute;
+width: 64px;
+height: 64px;
+left: 650px;
+top: 930px;
+transform: matrix(1, 0, 0, -1, 0, 0);
+}
+
+
+
+
+
 
 
 

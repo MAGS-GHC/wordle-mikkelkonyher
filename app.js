@@ -4,13 +4,24 @@ let round = 0;
 let myTest = [];
 
 
+//Enter key work kode til enterkey = 13
+const inputElements = document.querySelectorAll("input");
+inputElements.forEach((input) => {
+    input.addEventListener("keyup", (e) => {
+        if (e.keyCode === 13) {
+            checkValidWord();
+        }
+    });
+});
+
+
 getText("/Assets/valid-wordle-words.txt");
 
 async function getText(file) {
   let myObject = await fetch(file);
   let myText = await myObject.text();
   myTest = myText.split('\n');
-  correct = myTest[Math.floor(Math.random() * 12973)];
+  correct = myTest[Math.floor(Math.random() * myTest.length)];
 
 }
 
@@ -35,12 +46,12 @@ function checkValidWord () {
     for (let i=0; i<5; i++) {
         testWord += document.getElementById("r" + round + "c" + i).value;
     }
-    if (testWord.length === 5 && /^[a-zA-Z]*$/.test(testWord)) { //later test valid dictionary word
+    if (testWord.length === 5 && /^[a-zA-Z]*$/.test(testWord)) { 
         checkWord ();
         round++;
     }
     else {
-        alert("Not valid?")
+        alert("Not Valid?")
     }
     if (testWord === correct) {
         //game end
@@ -59,5 +70,5 @@ function restart (){
     correct = "";
     testWord = "";
     round = 0;
-    correct = myTest[Math.floor(Math.random() * 12973)];
+    correct = myTest[Math.floor(Math.random() * myTest.length)];
 }
