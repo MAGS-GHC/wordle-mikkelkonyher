@@ -3,6 +3,12 @@ let testWord = "";
 let round = 0;
 let myTest = [];
 
+function playWinner() {
+    let sound = document.getElementById("winner");
+    sound.play();
+}
+
+
 
 //Enter key work kode til enterkey = 13
 const inputElements = document.querySelectorAll("input");
@@ -15,6 +21,7 @@ inputElements.forEach((input) => {
 });
 
 
+
 getText("/Assets/valid-wordle-words.txt");
 
 async function getText(file) {
@@ -25,17 +32,19 @@ async function getText(file) {
 
 }
 
-function checkWord () {
-    for (let i = 0; i<5; i++) {
+function checkWord() {
+    for (let i = 0; i < 5; i++) {
+        let inputElement = document.getElementById("r" + round + "c" + i);
+        inputElement.disabled = true;
         if (correct[i] === testWord[i]) {
-            document.getElementById("r"+ round + "c" + (i)).style.backgroundColor = "green"
+            inputElement.style.backgroundColor = "green";
+        } else if (testWord[i] === correct[0] || testWord[i] === correct[1] || testWord[i] === correct[2] || testWord[i] === correct[3] || testWord[i] === correct[4]) {
+            inputElement.style.backgroundColor = "yellow";
+        } else {
+            inputElement.style.backgroundColor = "grey";
         }
-        else if (testWord[i] === correct[0] || testWord[i] === correct[1] || testWord[i] === correct[2] || testWord[i] === correct[3] || testWord[i] === correct[4]) {
-            document.getElementById("r"+ round + "c" + (i)).style.backgroundColor = "yellow"
-        }
-        else {
-            document.getElementById("r"+ round + "c" + (i)).style.backgroundColor = "grey"
-        }
+   
+
     }
 }
 
@@ -49,19 +58,21 @@ function checkValidWord () {
     if (testWord.length === 5 && /^[a-zA-Z]*$/.test(testWord)) { 
         checkWord ();
         round++;
+        
     }
     else {
         alert("Not Valid?")
     }
     if (testWord === correct) {
+     playWinner();
+     winnerbox();
         //game end
-       if(confirm("Completed! Press OK to play again")){
-            restart();
-        }
+
 
     }
 }
 
+//restart
 function restart (){
     
     let allInputs = document.querySelectorAll("input");
@@ -71,4 +82,12 @@ function restart (){
     testWord = "";
     round = 0;
     correct = myTest[Math.floor(Math.random() * myTest.length)];
+}
+
+
+//confirm box
+function winnerbox() {
+    setTimeout(function() {
+        confirm("You have won! Press OK to play again");
+    }, 500);
 }
