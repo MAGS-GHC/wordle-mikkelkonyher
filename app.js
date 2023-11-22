@@ -3,8 +3,15 @@ let testWord = "";
 let round = 0;
 let myTest = [];
 
+//Cheering lyd
+
 function playWinner() {
     let sound = document.getElementById("winner");
+    sound.play();
+}
+
+function parrotSound() {
+    let sound = document.getElementById("parrot");
     sound.play();
 }
 
@@ -21,6 +28,7 @@ inputElements.forEach((input) => {
 });
 
 
+// Henter txt fil med wordle words
 
 getText("/Assets/valid-wordle-words.txt");
 
@@ -31,6 +39,8 @@ async function getText(file) {
   correct = myTest[Math.floor(Math.random() * myTest.length)];
 
 }
+
+// sammenligner input word fra brugeren (Testword) med correct word og giver det en farve, deaktiverer det hentet input element.
 
 function checkWord() {
     for (let i = 0; i < 5; i++) {
@@ -48,6 +58,8 @@ function checkWord() {
     }
 }
 
+// Tjekker at ordet er valid, altså 5 bogstaver aA-zZ, kører funktion checkword og round++ hvis valid, ellers alert "Not Valid"
+// Hvis korrekt ord funktion playWinner(Lyd Cheering) samt winner box der kommer 500ms efter.
 
 function checkValidWord () {
     testWord = "";
@@ -57,11 +69,12 @@ function checkValidWord () {
     }
     if (testWord.length === 5 && /^[a-zA-Z]*$/.test(testWord)) { 
         checkWord ();
+        parrotSound();
         round++;
         
     }
     else {
-        alert("Not Valid?")
+        alert("Not Valid. Only letters a-z")
     }
     if (testWord === correct) {
      playWinner();
@@ -72,7 +85,7 @@ function checkValidWord () {
     }
 }
 
-//restart
+//restarter alt
 function restart (){
     
     let allInputs = document.querySelectorAll("input");
