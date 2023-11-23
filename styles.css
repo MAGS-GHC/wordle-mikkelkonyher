@@ -27,11 +27,6 @@ transform: matrix(1, 0, 0, -1, 0, 0);
 }
 
 
-
-
-
-
-
 .backGround{
 
   position: relative;
@@ -48,10 +43,10 @@ transform: matrix(1, 0, 0, -1, 0, 0);
 .logo{
 
 position: absolute;
-width: 1096px;
-height: 616px;
-left: 208px;
-top: -155px;
+width: 796px;
+height: 316px;
+left: 358px;
+top: -30px;
 }
 
 

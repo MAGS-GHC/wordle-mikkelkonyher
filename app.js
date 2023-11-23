@@ -1,7 +1,7 @@
 let correct = "";
-let testWord = "";
+let guessWord = "";
 let round = 0;
-let myTest = [];
+let wordList = [];
 
 //Cheering lyd
 
@@ -10,6 +10,7 @@ function playWinner() {
     sound.play();
 }
 
+//Lyd når man gætter
 function parrotSound() {
     let sound = document.getElementById("parrot");
     sound.play();
@@ -18,14 +19,16 @@ function parrotSound() {
 
 
 //Enter key work kode til enterkey = 13
-const inputElements = document.querySelectorAll("input");
-inputElements.forEach((input) => {
-    input.addEventListener("keyup", (e) => {
-        if (e.keyCode === 13) {
-            checkValidWord();
-        }
+
+    const inputElements = document.querySelectorAll("input");
+    inputElements.forEach((input) => {
+        input.addEventListener("keyup", (enter) => {
+            if (enter.key === "Enter" || enter.key === 13) {
+                checkValidWord();
+            }
+        });
     });
-});
+
 
 
 // Henter txt fil med wordle words
@@ -35,20 +38,20 @@ getText("/Assets/valid-wordle-words.txt");
 async function getText(file) {
   let myObject = await fetch(file);
   let myText = await myObject.text();
-  myTest = myText.split('\n');
-  correct = myTest[Math.floor(Math.random() * myTest.length)];
+  wordList = myText.split('\n');
+  correct = wordList[Math.floor(Math.random() * wordList.length)];
 
 }
 
-// sammenligner input word fra brugeren (Testword) med correct word og giver det en farve, deaktiverer det hentet input element.
+// sammenligner input word fra brugeren (guessWord) med correct word og giver det en farve, deaktiverer det hentet input element.
 
 function checkWord() {
     for (let i = 0; i < 5; i++) {
         let inputElement = document.getElementById("r" + round + "c" + i);
         inputElement.disabled = true;
-        if (correct[i] === testWord[i]) {
+        if (correct[i] === guessWord[i]) {
             inputElement.style.backgroundColor = "green";
-        } else if (testWord[i] === correct[0] || testWord[i] === correct[1] || testWord[i] === correct[2] || testWord[i] === correct[3] || testWord[i] === correct[4]) {
+        } else if (guessWord[i] === correct[0] || guessWord[i] === correct[1] || guessWord[i] === correct[2] || guessWord[i] === correct[3] || guessWord[i] === correct[4]) {
             inputElement.style.backgroundColor = "yellow";
         } else {
             inputElement.style.backgroundColor = "grey";
@@ -62,12 +65,12 @@ function checkWord() {
 // Hvis korrekt ord funktion playWinner(Lyd Cheering) samt winner box der kommer 500ms efter.
 
 function checkValidWord () {
-    testWord = "";
-    console.log(testWord)
+    guessWord = "";
+    console.log(guessWord)
     for (let i=0; i<5; i++) {
-        testWord += document.getElementById("r" + round + "c" + i).value;
+        guessWord += document.getElementById("r" + round + "c" + i).value;
     }
-    if (testWord.length === 5 && /^[a-zA-Z]*$/.test(testWord)) { 
+    if (guessWord.length === 5 && /^[a-zA-Z]*$/.test(guessWord)) { 
         checkWord ();
         parrotSound();
         round++;
@@ -76,9 +79,10 @@ function checkValidWord () {
     else {
         alert("Not Valid. Only letters a-z")
     }
-    if (testWord === correct) {
+    if (guessWord === correct) {
      playWinner();
      winnerbox();
+    
         //game end
 
 
@@ -92,15 +96,16 @@ function restart (){
     allInputs.forEach(clearInput => clearInput.value = "") 
     allInputs.forEach(clearInput => clearInput.style.backgroundColor = "");
     correct = "";
-    testWord = "";
+    guessWord = "";
     round = 0;
-    correct = myTest[Math.floor(Math.random() * myTest.length)];
+    correct = wordList[Math.floor(Math.random() * wordList.length)];
 }
 
 
 //confirm box
 function winnerbox() {
     setTimeout(function() {
-        confirm("You have won! Press OK to play again");
+        confirm("CORRECT! Press OK to play again");
+        restart();
     }, 500);
 }
